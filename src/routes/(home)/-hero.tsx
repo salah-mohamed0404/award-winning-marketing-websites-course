@@ -29,9 +29,24 @@ export function HeroSection() {
     const onMouseMove = (e: MouseEvent) => {
       const dx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
       const dy = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2)
-      gsap.to(orb1Ref.current, { x: dx * 40, y: dy * 30, duration: 1.8, ease: 'power2.out' })
-      gsap.to(orb2Ref.current, { x: dx * -30, y: dy * -25, duration: 2.2, ease: 'power2.out' })
-      gsap.to(orb3Ref.current, { x: dx * 20, y: dy * 35, duration: 1.6, ease: 'power2.out' })
+      gsap.to(orb1Ref.current, {
+        x: dx * 40,
+        y: dy * 30,
+        duration: 1.8,
+        ease: 'power2.out',
+      })
+      gsap.to(orb2Ref.current, {
+        x: dx * -30,
+        y: dy * -25,
+        duration: 2.2,
+        ease: 'power2.out',
+      })
+      gsap.to(orb3Ref.current, {
+        x: dx * 20,
+        y: dy * 35,
+        duration: 1.6,
+        ease: 'power2.out',
+      })
     }
     hero.addEventListener('mousemove', onMouseMove)
     return () => hero.removeEventListener('mousemove', onMouseMove)
@@ -95,8 +110,16 @@ export function HeroSection() {
           },
           '-=0.48',
         )
-        .from('.hero-divider', { scaleX: 0, duration: 0.6, ease: 'expo.out' }, '-=0.2')
-        .from('.hero-sub', { autoAlpha: 0, y: 18, duration: 0.55, ease: 'power3.out' }, '-=0.4')
+        .from(
+          '.hero-divider',
+          { scaleX: 0, duration: 0.6, ease: 'expo.out' },
+          '-=0.2',
+        )
+        .from(
+          '.hero-sub',
+          { autoAlpha: 0, y: 18, duration: 0.55, ease: 'power3.out' },
+          '-=0.4',
+        )
         .from(
           '.hero-cta-wrap',
           { autoAlpha: 0, y: 14, duration: 0.5, ease: 'power3.out' },
@@ -104,14 +127,29 @@ export function HeroSection() {
         )
         .from(
           '.tech-pill',
-          { autoAlpha: 0, scale: 0.7, duration: 0.4, stagger: 0.06, ease: 'back.out(2)' },
+          {
+            autoAlpha: 0,
+            scale: 0.7,
+            duration: 0.4,
+            stagger: 0.06,
+            ease: 'back.out(2)',
+          },
           '-=0.4',
         )
-        .from('.scroll-hint', { autoAlpha: 0, y: -10, duration: 0.5, ease: 'power2.out' }, '-=0.2')
+        .from(
+          '.scroll-hint',
+          { autoAlpha: 0, y: -10, duration: 0.5, ease: 'power2.out' },
+          '-=0.2',
+        )
         // DrawSVG corner brackets — draw outward from midpoint
         .from(
           '.hero-bracket-path',
-          { drawSVG: '50% 50%', duration: 0.7, stagger: 0.1, ease: 'power2.out' },
+          {
+            drawSVG: '50% 50%',
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out',
+          },
           '-=0.1',
         )
 
@@ -135,7 +173,11 @@ export function HeroSection() {
         pillTweens.forEach((t) => t.kill())
       }
     },
-    { scope: heroRef, dependencies: [reducedMotion, isLowPower], revertOnUpdate: true },
+    {
+      scope: heroRef,
+      dependencies: [reducedMotion, isLowPower],
+      revertOnUpdate: true,
+    },
   )
 
   return (
@@ -145,7 +187,10 @@ export function HeroSection() {
       style={{ perspective: '1000px' }}
     >
       {/* Ambient orbs + decorative elements */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden
+      >
         <div
           ref={orb1Ref}
           className="absolute rounded-full"
@@ -154,7 +199,8 @@ export function HeroSection() {
             height: 720,
             top: '-18%',
             left: '-14%',
-            background: 'radial-gradient(circle, rgba(79,184,178,0.35) 0%, transparent 65%)',
+            background:
+              'radial-gradient(circle, rgba(79,184,178,0.35) 0%, transparent 65%)',
             filter: 'blur(80px)',
           }}
         />
@@ -166,7 +212,8 @@ export function HeroSection() {
             height: 560,
             bottom: '-12%',
             right: '-10%',
-            background: 'radial-gradient(circle, rgba(47,106,74,0.3) 0%, transparent 65%)',
+            background:
+              'radial-gradient(circle, rgba(47,106,74,0.3) 0%, transparent 65%)',
             filter: 'blur(90px)',
           }}
         />
@@ -178,7 +225,8 @@ export function HeroSection() {
             height: 400,
             top: '55%',
             left: '40%',
-            background: 'radial-gradient(circle, rgba(139,156,244,0.2) 0%, transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(139,156,244,0.2) 0%, transparent 70%)',
             filter: 'blur(70px)',
           }}
         />
@@ -304,7 +352,10 @@ export function HeroSection() {
               </div>
               <div
                 className="text-[10px] uppercase mt-1"
-                style={{ color: 'var(--sea-ink-soft)', letterSpacing: '0.14em' }}
+                style={{
+                  color: 'var(--sea-ink-soft)',
+                  letterSpacing: '0.14em',
+                }}
               >
                 {stat.label}
               </div>
@@ -332,7 +383,9 @@ export function HeroSection() {
           >
             Award-Winning
           </span>
-          <span className="hero-line-2 block overflow-hidden pb-2">Marketing Websites</span>
+          <span className="hero-line-2 block overflow-hidden pb-2">
+            Marketing Websites
+          </span>
         </h1>
       </div>
 
@@ -356,8 +409,8 @@ export function HeroSection() {
           fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)',
         }}
       >
-        11 hands-on experiments exploring GSAP, ScrollTrigger, Three.js, and advanced web
-        animation — built alongside the Frontend Masters course.
+        11 hands-on experiments exploring GSAP, ScrollTrigger, Three.js, and
+        advanced web animation — built alongside the Frontend Masters course.
       </p>
 
       {/* CTAs */}
@@ -397,8 +450,30 @@ export function HeroSection() {
           className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm no-underline island-shell transition-all"
           style={{ color: 'var(--sea-ink)', textDecoration: 'none' }}
         >
-          <span className="inline-block w-2 h-2 rounded-full" style={{ background: '#c84b31' }} />
+          <span
+            className="inline-block w-2 h-2 rounded-full"
+            style={{ background: '#c84b31' }}
+          />
           Frontend Masters
+        </a>
+
+        <a
+          href="https://github.com/salah-mohamed0404/award-winning-marketing-websites-course"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm no-underline island-shell transition-all"
+          style={{ color: 'var(--sea-ink)', textDecoration: 'none' }}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z" />
+          </svg>
+          GitHub
         </a>
       </div>
 
@@ -407,7 +482,13 @@ export function HeroSection() {
         className="scroll-hint absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         style={{ color: 'var(--sea-ink-soft)', opacity: 0.45 }}
       >
-        <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', fontWeight: 600 }}>
+        <span
+          style={{
+            fontSize: '0.65rem',
+            letterSpacing: '0.2em',
+            fontWeight: 600,
+          }}
+        >
           SCROLL TO EXPLORE
         </span>
         <div
