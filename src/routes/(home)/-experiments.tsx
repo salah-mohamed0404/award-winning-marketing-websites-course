@@ -66,12 +66,13 @@ function getQuickTo(card: HTMLElement) {
 
 export function ExperimentsGrid() {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const entranceComplete = useRef(false)
   const { reducedMotion, isLowPower } = useHomeMotion()
 
   // Magnetic hover — card tilts toward cursor via quickTo (no tween pile-up)
   const handleCardMove = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (reducedMotion || isLowPower) return
+      if (reducedMotion || isLowPower || !entranceComplete.current) return
       const card = e.currentTarget
       const rect = card.getBoundingClientRect()
       const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2
@@ -87,7 +88,7 @@ export function ExperimentsGrid() {
 
   const handleCardEnter = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (reducedMotion || isLowPower) return
+      if (reducedMotion || isLowPower || !entranceComplete.current) return
       const card = e.currentTarget
       const { shadow, arrow, bar } = getChildren(card)
       if (shadow) {
@@ -111,7 +112,7 @@ export function ExperimentsGrid() {
 
   const handleCardLeave = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (reducedMotion || isLowPower) return
+      if (reducedMotion || isLowPower || !entranceComplete.current) return
       const card = e.currentTarget
       // Smooth spring-back for transform props
       gsap.to(card, {
@@ -150,6 +151,7 @@ export function ExperimentsGrid() {
       if (reducedMotion || isLowPower) {
         gsap.from('.section-heading > *', { autoAlpha: 0, duration: 0.5, stagger: 0.05 })
         gsap.from('.exp-card', { autoAlpha: 0, duration: 0.4, stagger: 0.03 })
+        entranceComplete.current = true
         return
       }
 
@@ -194,6 +196,7 @@ export function ExperimentsGrid() {
       )
 
       // --- Card entrances — diagonal wave with layered reveals ---
+      entranceComplete.current = false
       const cards = gsap.utils.toArray<HTMLElement>('.exp-card')
 
       // Set initial states
@@ -203,6 +206,7 @@ export function ExperimentsGrid() {
       // Cards enter with clip-path wipe + 3D transform
       const cardTl = gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: 'top 78%' },
+        onComplete: () => { entranceComplete.current = true },
       })
 
       cards.forEach((card, i) => {
