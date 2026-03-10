@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { DrawSVGPlugin, ScrollTrigger } from 'gsap/all'
 import { useHomeMotion } from './-use-home-motion'
 import { PANELS } from './-pinned-data'
-import { DIAGRAMS } from './-pinned-diagrams'
+import { DIAGRAMS } from './-diagrams'
 
 gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger)
 

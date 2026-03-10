@@ -1,7 +1,9 @@
 import { useMemo } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { HeroSection } from './-hero'
-import { ExperimentsGrid, ResourcesSection, SiteFooter } from './-experiments'
+import { ExperimentsGrid } from './-experiments'
+import { ResourcesSection } from './-resources'
+import { SiteFooter } from './-footer'
 import { PinnedShowcase } from './-pinned-showcase'
 import { marqueeItems } from './-home-data'
 
