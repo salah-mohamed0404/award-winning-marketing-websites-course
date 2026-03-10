@@ -295,6 +295,214 @@ a {
   }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scrollLine {
+  0%   { top: -40%; opacity: 1; }
+  80%  { top: 100%; opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/*
+  Gradient text fix for the hero title second line.
+  SplitText wraps each character in a .char child element. Those children inherit
+  -webkit-text-fill-color: transparent from the parent, but lose the background gradient,
+  making them invisible. Setting the gradient directly on each .char resolves this.
+*/
+.hero-line-2 .char {
+  background: linear-gradient(125deg, var(--lagoon) 0%, #5ba38e 50%, var(--palm) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ─── Resources Section ─────────────────────────────────────────────────── */
+
+.resources-panel {
+  position: relative;
+  overflow: hidden;
+  background: #0f1e24;
+  border-radius: 2rem;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+
+/* Radial lagoon glow in top-left corner */
+.resources-panel::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -8%;
+  width: 55%;
+  height: 100%;
+  background: radial-gradient(ellipse, rgba(79, 184, 178, 0.14) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Large decorative glyph watermark */
+.resources-deco {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 2.5rem;
+  font-size: 16rem;
+  line-height: 1;
+  color: rgba(79, 184, 178, 0.055);
+  font-family: "Fraunces", serif;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Left intro column */
+.res-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.res-title {
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  font-weight: 700;
+  color: #eaf8f5;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0.7rem 0 1.2rem;
+}
+
+.res-desc {
+  color: rgba(175, 205, 200, 0.68);
+  font-size: 0.93rem;
+  line-height: 1.7;
+  max-width: 22ch;
+}
+
+.res-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin-top: 2.75rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(79, 184, 178, 0.2);
+}
+
+.res-badge-num {
+  font-family: "Fraunces", serif;
+  font-size: 3.8rem;
+  font-weight: 700;
+  color: var(--lagoon);
+  line-height: 1;
+}
+
+.res-badge-label {
+  font-size: 0.72rem;
+  color: rgba(175, 205, 200, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+}
+
+/* Resource row list */
+.resources-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.25rem;
+}
+
+.res-row {
+  border-top: 1px solid rgba(79, 184, 178, 0.1);
+}
+
+.res-row:last-child {
+  border-bottom: 1px solid rgba(79, 184, 178, 0.1);
+}
+
+.res-link {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.05rem 0.25rem;
+  color: rgba(215, 236, 232, 0.62);
+  position: relative;
+  overflow: hidden;
+  transition: color 200ms ease;
+}
+
+/* Sweep line reveal on hover */
+.res-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, var(--lagoon) 0%, rgba(79, 184, 178, 0) 100%);
+  transition: width 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.res-link:hover {
+  color: #eaf8f5;
+}
+
+.res-link:hover::before {
+  width: 100%;
+}
+
+.res-index {
+  font-family: "Fraunces", serif;
+  font-size: 0.72rem;
+  color: rgba(79, 184, 178, 0.45);
+  min-width: 2rem;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.res-label {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: color 200ms ease;
+}
+
+.res-arrow-icon {
+  opacity: 0;
+  transform: translate(-5px, 3px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  color: var(--lagoon);
+  display: flex;
+  align-items: center;
+}
+
+.res-link:hover .res-arrow-icon {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+@media (max-width: 740px) {
+  .resources-panel {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 2rem;
+  }
+
+  .res-badge {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+  }
+
+  .res-title {
+    font-size: 3rem;
+  }
+}
+
+/* ─── End Resources Section ─────────────────────────────────────────────── */
+
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

@@ -9,68 +9,286 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as R9ReducedMotionRouteRouteImport } from './routes/9-reduced-motion/route'
+import { Route as R8ImageSequenceRouteRouteImport } from './routes/8-image-sequence/route'
+import { Route as R7CustomCursorRouteRouteImport } from './routes/7-custom-cursor/route'
+import { Route as R6VariablesRouteRouteImport } from './routes/6-variables/route'
+import { Route as R5FollowScrollRouteRouteImport } from './routes/5-follow-scroll/route'
+import { Route as R4ScrollTriggerRouteRouteImport } from './routes/4-scroll-trigger/route'
+import { Route as R3TimelinesRouteRouteImport } from './routes/3-timelines/route'
+import { Route as R2CssVersionRouteRouteImport } from './routes/2-css-version/route'
+import { Route as R11Animating3dScenesRouteRouteImport } from './routes/11-animating-3d-scenes/route'
+import { Route as R10DeviceProfilingRouteRouteImport } from './routes/10-device-profiling/route'
+import { Route as R1GsapBasicsRouteRouteImport } from './routes/1-gsap-basics/route'
+import { Route as homeIndexRouteImport } from './routes/(home)/index'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const R9ReducedMotionRouteRoute = R9ReducedMotionRouteRouteImport.update({
+  id: '/9-reduced-motion',
+  path: '/9-reduced-motion',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
+const R8ImageSequenceRouteRoute = R8ImageSequenceRouteRouteImport.update({
+  id: '/8-image-sequence',
+  path: '/8-image-sequence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R7CustomCursorRouteRoute = R7CustomCursorRouteRouteImport.update({
+  id: '/7-custom-cursor',
+  path: '/7-custom-cursor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R6VariablesRouteRoute = R6VariablesRouteRouteImport.update({
+  id: '/6-variables',
+  path: '/6-variables',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R5FollowScrollRouteRoute = R5FollowScrollRouteRouteImport.update({
+  id: '/5-follow-scroll',
+  path: '/5-follow-scroll',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R4ScrollTriggerRouteRoute = R4ScrollTriggerRouteRouteImport.update({
+  id: '/4-scroll-trigger',
+  path: '/4-scroll-trigger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R3TimelinesRouteRoute = R3TimelinesRouteRouteImport.update({
+  id: '/3-timelines',
+  path: '/3-timelines',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R2CssVersionRouteRoute = R2CssVersionRouteRouteImport.update({
+  id: '/2-css-version',
+  path: '/2-css-version',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R11Animating3dScenesRouteRoute =
+  R11Animating3dScenesRouteRouteImport.update({
+    id: '/11-animating-3d-scenes',
+    path: '/11-animating-3d-scenes',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R10DeviceProfilingRouteRoute = R10DeviceProfilingRouteRouteImport.update({
+  id: '/10-device-profiling',
+  path: '/10-device-profiling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R1GsapBasicsRouteRoute = R1GsapBasicsRouteRouteImport.update({
+  id: '/1-gsap-basics',
+  path: '/1-gsap-basics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const homeIndexRoute = homeIndexRouteImport.update({
+  id: '/(home)/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/1-gsap-basics': typeof R1GsapBasicsRouteRoute
+  '/10-device-profiling': typeof R10DeviceProfilingRouteRoute
+  '/11-animating-3d-scenes': typeof R11Animating3dScenesRouteRoute
+  '/2-css-version': typeof R2CssVersionRouteRoute
+  '/3-timelines': typeof R3TimelinesRouteRoute
+  '/4-scroll-trigger': typeof R4ScrollTriggerRouteRoute
+  '/5-follow-scroll': typeof R5FollowScrollRouteRoute
+  '/6-variables': typeof R6VariablesRouteRoute
+  '/7-custom-cursor': typeof R7CustomCursorRouteRoute
+  '/8-image-sequence': typeof R8ImageSequenceRouteRoute
+  '/9-reduced-motion': typeof R9ReducedMotionRouteRoute
+  '/': typeof homeIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/1-gsap-basics': typeof R1GsapBasicsRouteRoute
+  '/10-device-profiling': typeof R10DeviceProfilingRouteRoute
+  '/11-animating-3d-scenes': typeof R11Animating3dScenesRouteRoute
+  '/2-css-version': typeof R2CssVersionRouteRoute
+  '/3-timelines': typeof R3TimelinesRouteRoute
+  '/4-scroll-trigger': typeof R4ScrollTriggerRouteRoute
+  '/5-follow-scroll': typeof R5FollowScrollRouteRoute
+  '/6-variables': typeof R6VariablesRouteRoute
+  '/7-custom-cursor': typeof R7CustomCursorRouteRoute
+  '/8-image-sequence': typeof R8ImageSequenceRouteRoute
+  '/9-reduced-motion': typeof R9ReducedMotionRouteRoute
+  '/': typeof homeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/1-gsap-basics': typeof R1GsapBasicsRouteRoute
+  '/10-device-profiling': typeof R10DeviceProfilingRouteRoute
+  '/11-animating-3d-scenes': typeof R11Animating3dScenesRouteRoute
+  '/2-css-version': typeof R2CssVersionRouteRoute
+  '/3-timelines': typeof R3TimelinesRouteRoute
+  '/4-scroll-trigger': typeof R4ScrollTriggerRouteRoute
+  '/5-follow-scroll': typeof R5FollowScrollRouteRoute
+  '/6-variables': typeof R6VariablesRouteRoute
+  '/7-custom-cursor': typeof R7CustomCursorRouteRoute
+  '/8-image-sequence': typeof R8ImageSequenceRouteRoute
+  '/9-reduced-motion': typeof R9ReducedMotionRouteRoute
+  '/(home)/': typeof homeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/1-gsap-basics'
+    | '/10-device-profiling'
+    | '/11-animating-3d-scenes'
+    | '/2-css-version'
+    | '/3-timelines'
+    | '/4-scroll-trigger'
+    | '/5-follow-scroll'
+    | '/6-variables'
+    | '/7-custom-cursor'
+    | '/8-image-sequence'
+    | '/9-reduced-motion'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/1-gsap-basics'
+    | '/10-device-profiling'
+    | '/11-animating-3d-scenes'
+    | '/2-css-version'
+    | '/3-timelines'
+    | '/4-scroll-trigger'
+    | '/5-follow-scroll'
+    | '/6-variables'
+    | '/7-custom-cursor'
+    | '/8-image-sequence'
+    | '/9-reduced-motion'
+    | '/'
+  id:
+    | '__root__'
+    | '/1-gsap-basics'
+    | '/10-device-profiling'
+    | '/11-animating-3d-scenes'
+    | '/2-css-version'
+    | '/3-timelines'
+    | '/4-scroll-trigger'
+    | '/5-follow-scroll'
+    | '/6-variables'
+    | '/7-custom-cursor'
+    | '/8-image-sequence'
+    | '/9-reduced-motion'
+    | '/(home)/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  R1GsapBasicsRouteRoute: typeof R1GsapBasicsRouteRoute
+  R10DeviceProfilingRouteRoute: typeof R10DeviceProfilingRouteRoute
+  R11Animating3dScenesRouteRoute: typeof R11Animating3dScenesRouteRoute
+  R2CssVersionRouteRoute: typeof R2CssVersionRouteRoute
+  R3TimelinesRouteRoute: typeof R3TimelinesRouteRoute
+  R4ScrollTriggerRouteRoute: typeof R4ScrollTriggerRouteRoute
+  R5FollowScrollRouteRoute: typeof R5FollowScrollRouteRoute
+  R6VariablesRouteRoute: typeof R6VariablesRouteRoute
+  R7CustomCursorRouteRoute: typeof R7CustomCursorRouteRoute
+  R8ImageSequenceRouteRoute: typeof R8ImageSequenceRouteRoute
+  R9ReducedMotionRouteRoute: typeof R9ReducedMotionRouteRoute
+  homeIndexRoute: typeof homeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/9-reduced-motion': {
+      id: '/9-reduced-motion'
+      path: '/9-reduced-motion'
+      fullPath: '/9-reduced-motion'
+      preLoaderRoute: typeof R9ReducedMotionRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/8-image-sequence': {
+      id: '/8-image-sequence'
+      path: '/8-image-sequence'
+      fullPath: '/8-image-sequence'
+      preLoaderRoute: typeof R8ImageSequenceRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/7-custom-cursor': {
+      id: '/7-custom-cursor'
+      path: '/7-custom-cursor'
+      fullPath: '/7-custom-cursor'
+      preLoaderRoute: typeof R7CustomCursorRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/6-variables': {
+      id: '/6-variables'
+      path: '/6-variables'
+      fullPath: '/6-variables'
+      preLoaderRoute: typeof R6VariablesRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/5-follow-scroll': {
+      id: '/5-follow-scroll'
+      path: '/5-follow-scroll'
+      fullPath: '/5-follow-scroll'
+      preLoaderRoute: typeof R5FollowScrollRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/4-scroll-trigger': {
+      id: '/4-scroll-trigger'
+      path: '/4-scroll-trigger'
+      fullPath: '/4-scroll-trigger'
+      preLoaderRoute: typeof R4ScrollTriggerRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/3-timelines': {
+      id: '/3-timelines'
+      path: '/3-timelines'
+      fullPath: '/3-timelines'
+      preLoaderRoute: typeof R3TimelinesRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/2-css-version': {
+      id: '/2-css-version'
+      path: '/2-css-version'
+      fullPath: '/2-css-version'
+      preLoaderRoute: typeof R2CssVersionRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/11-animating-3d-scenes': {
+      id: '/11-animating-3d-scenes'
+      path: '/11-animating-3d-scenes'
+      fullPath: '/11-animating-3d-scenes'
+      preLoaderRoute: typeof R11Animating3dScenesRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/10-device-profiling': {
+      id: '/10-device-profiling'
+      path: '/10-device-profiling'
+      fullPath: '/10-device-profiling'
+      preLoaderRoute: typeof R10DeviceProfilingRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/1-gsap-basics': {
+      id: '/1-gsap-basics'
+      path: '/1-gsap-basics'
+      fullPath: '/1-gsap-basics'
+      preLoaderRoute: typeof R1GsapBasicsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(home)/': {
+      id: '/(home)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof homeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  R1GsapBasicsRouteRoute: R1GsapBasicsRouteRoute,
+  R10DeviceProfilingRouteRoute: R10DeviceProfilingRouteRoute,
+  R11Animating3dScenesRouteRoute: R11Animating3dScenesRouteRoute,
+  R2CssVersionRouteRoute: R2CssVersionRouteRoute,
+  R3TimelinesRouteRoute: R3TimelinesRouteRoute,
+  R4ScrollTriggerRouteRoute: R4ScrollTriggerRouteRoute,
+  R5FollowScrollRouteRoute: R5FollowScrollRouteRoute,
+  R6VariablesRouteRoute: R6VariablesRouteRoute,
+  R7CustomCursorRouteRoute: R7CustomCursorRouteRoute,
+  R8ImageSequenceRouteRoute: R8ImageSequenceRouteRoute,
+  R9ReducedMotionRouteRoute: R9ReducedMotionRouteRoute,
+  homeIndexRoute: homeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
