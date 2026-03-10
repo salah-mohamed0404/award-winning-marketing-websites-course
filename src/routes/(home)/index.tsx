@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { HeroSection } from './-hero'
 import { ExperimentsGrid, ResourcesSection, SiteFooter } from './-experiments'
@@ -7,7 +8,7 @@ import { marqueeItems } from './-home-data'
 export const Route = createFileRoute('/(home)/')({ component: HomePage })
 
 function MarqueeStrip() {
-  const doubled = [...marqueeItems, ...marqueeItems]
+  const doubled = useMemo(() => [...marqueeItems, ...marqueeItems], [])
   return (
     <div
       className="relative overflow-hidden py-3 border-y"

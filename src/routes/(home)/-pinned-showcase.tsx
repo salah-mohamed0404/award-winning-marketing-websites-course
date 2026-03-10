@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, memo } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { DrawSVGPlugin, ScrollTrigger } from 'gsap/all'
@@ -10,10 +10,14 @@ gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger)
 
 // ─── Full motion variant ───────────────────────────────────────────────────────
 
+// Memoize diagrams so hidden ones don't re-render
+const MemoizedDiagrams = DIAGRAMS.map((D, i) => memo(D))
+
 function PinnedShowcaseFull() {
   const outerRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef(0)
   const activePanelRef = useRef(0)
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activePanel, setActivePanel] = useState(0)
   const n = PANELS.length
 
@@ -43,10 +47,9 @@ function PinnedShowcaseFull() {
     { scope: outerRef },
   )
 
-  // Animate panels in/out and re-draw SVG paths whenever the active panel changes
+  // Animate panels in/out using cached refs
   useEffect(() => {
-    PANELS.forEach((_, i) => {
-      const el = document.querySelector<HTMLElement>(`.showcase-panel-${i}`)
+    panelRefs.current.forEach((el, i) => {
       if (!el) return
       if (i === activePanel) {
         gsap.to(el, { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power3.out' })
@@ -75,10 +78,17 @@ function PinnedShowcaseFull() {
         </div>
 
         {/* Progress indicator */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2.5 z-10">
+        <div
+          className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2.5 z-10"
+          role="tablist"
+          aria-label="Technique panels"
+        >
           {PANELS.map((panel, i) => (
             <div
               key={panel.kicker}
+              role="tab"
+              aria-selected={i === activePanel}
+              aria-label={panel.title}
               className="rounded-full transition-all duration-300"
               style={{
                 width:  i === activePanel ? 7 : 5,
@@ -94,10 +104,15 @@ function PinnedShowcaseFull() {
 
         {/* Panels — stacked absolutely, shown one at a time */}
         {PANELS.map((panel, i) => {
-          const Diagram = DIAGRAMS[i]
+          const Diagram = MemoizedDiagrams[i]
+          // Only render diagram for active and adjacent panels
+          const shouldRenderDiagram = Math.abs(i - activePanel) <= 1
           return (
             <div
               key={panel.kicker}
+              ref={(el) => { panelRefs.current[i] = el }}
+              role="tabpanel"
+              aria-label={panel.title}
               className={`showcase-panel-${i} absolute inset-0 flex items-center justify-center px-6`}
               style={{ opacity: i === 0 ? 1 : 0 }}
             >
@@ -129,7 +144,7 @@ function PinnedShowcaseFull() {
                   </div>
 
                   <div className="flex items-center justify-center min-h-50">
-                    <Diagram />
+                    {shouldRenderDiagram && <Diagram />}
                   </div>
 
                 </div>

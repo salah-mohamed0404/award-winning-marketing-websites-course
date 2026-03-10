@@ -116,18 +116,24 @@ export function HeroSection() {
         )
 
       // Floating idle animation for pills
+      const pillTweens: gsap.core.Tween[] = []
       gsap.utils.toArray<HTMLElement>('.tech-pill').forEach((pill, i) => {
-        gsap.to(pill, {
-          y: i % 2 === 0 ? -8 : 8,
-          duration: 2 + i * 0.3,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: i * 0.2,
-        })
+        pillTweens.push(
+          gsap.to(pill, {
+            y: i % 2 === 0 ? -8 : 8,
+            duration: 2 + i * 0.3,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: i * 0.2,
+          }),
+        )
       })
 
-      return () => mainTl.kill()
+      return () => {
+        mainTl.kill()
+        pillTweens.forEach((t) => t.kill())
+      }
     },
     { scope: heroRef, dependencies: [reducedMotion, isLowPower], revertOnUpdate: true },
   )

@@ -31,6 +31,25 @@ const quickToMap = new WeakMap<
   }
 >()
 
+// Cache child element lookups per card
+const childCache = new WeakMap<
+  HTMLElement,
+  { shadow: Element | null; arrow: Element | null; bar: Element | null }
+>()
+
+function getChildren(card: HTMLElement) {
+  let refs = childCache.get(card)
+  if (!refs) {
+    refs = {
+      shadow: card.querySelector('.exp-shadow'),
+      arrow: card.querySelector('.exp-arrow'),
+      bar: card.querySelector('.exp-accent-bar'),
+    }
+    childCache.set(card, refs)
+  }
+  return refs
+}
+
 function getQuickTo(card: HTMLElement) {
   let qt = quickToMap.get(card)
   if (!qt) {
@@ -70,12 +89,10 @@ export function ExperimentsGrid() {
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (reducedMotion || isLowPower) return
       const card = e.currentTarget
-      // Shadow layer — animate opacity on a dedicated element (GPU-composited, no paint)
-      const shadow = card.querySelector('.exp-shadow')
+      const { shadow, arrow, bar } = getChildren(card)
       if (shadow) {
         gsap.to(shadow, { opacity: 1, duration: 0.4, ease: 'power2.out', overwrite: 'auto' })
       }
-      const arrow = card.querySelector('.exp-arrow')
       if (arrow) {
         gsap.to(arrow, {
           autoAlpha: 1,
@@ -85,7 +102,6 @@ export function ExperimentsGrid() {
           overwrite: 'auto',
         })
       }
-      const bar = card.querySelector('.exp-accent-bar')
       if (bar) {
         gsap.to(bar, { scaleX: 1, duration: 0.5, ease: 'expo.out', overwrite: 'auto' })
       }
@@ -108,11 +124,10 @@ export function ExperimentsGrid() {
         overwrite: 'auto',
       })
       // Shadow layer fades out
-      const shadow = card.querySelector('.exp-shadow')
+      const { shadow, arrow, bar } = getChildren(card)
       if (shadow) {
         gsap.to(shadow, { opacity: 0, duration: 0.5, ease: 'power2.inOut', overwrite: 'auto' })
       }
-      const arrow = card.querySelector('.exp-arrow')
       if (arrow) {
         gsap.to(arrow, {
           autoAlpha: 0,
@@ -122,7 +137,6 @@ export function ExperimentsGrid() {
           overwrite: 'auto',
         })
       }
-      const bar = card.querySelector('.exp-accent-bar')
       if (bar) {
         gsap.to(bar, { scaleX: 0, duration: 0.4, ease: 'power2.inOut', overwrite: 'auto' })
       }
